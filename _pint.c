@@ -1,0 +1,24 @@
+#include "monty.h"
+
+/**
+ * _pint - prints the value at the top of the stack
+ *
+ * @head: head of a stack_t
+ * @line_number: line nbr of the opcode in the read file
+ *
+ * Return: void
+ */
+
+void _pint(stack_t **head, unsigned int line_number)
+{
+	stack_t *current;
+
+	current = *head;
+	if (current == NULL)
+	{
+		fprintf(stderr, "L%d: can't pint, stack empty\n", line_number);
+		code_exit = -1;
+		return;
+	}
+	printf("%d\n", current->n);
+}

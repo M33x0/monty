@@ -39,15 +39,25 @@ typedef struct instruction_s
 	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
+/*We global*/
+extern int code_exit;
+
 /*Function for opcode*/
 void _pall(stack_t **stack, unsigned int line_number);
+void _push(stack_t **head, int arg);
 void _pint(stack_t **stack, unsigned int line_number);
 void _pop(stack_t **stack, unsigned int line_number);
+void _nop(stack_t **stack, unsigned int line_number);
+void _sub(stack_t **head, unsigned int line_number);
 void _swap(stack_t **stack, unsigned int line_number);
+void _add(stack_t **head, unsigned int line_number);
+int parse(char *buffer, stack_t **stack, int number_line);
+int _opcodes(char *opcode, stack_t **stack, int number_line);
 
 /*utility functions*/
 int _strlen(char *s);
 char *_strcat(char *dest, char *src);
 int _strncmp(char *s1, char *s2, int n);
 void free_stack(stack_t *head);
+
 #endif /*_MONTY_H*/

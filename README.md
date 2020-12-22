@@ -1,2 +1,2 @@
-Stack and Queue
-# monty
+Stack and Queue LIFO,FIFO
+Monty Python

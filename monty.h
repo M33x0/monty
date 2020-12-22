@@ -55,8 +55,10 @@ void _swap(stack_t **stack, unsigned int line_number);
 void _add(stack_t **head, unsigned int line_number);
 void _mod(stack_t **head, unsigned int line_number);
 void _pchar(stack_t **head, unsigned int line_number);
+void _pstr(stack_t **head, unsigned int line_number);
 int parse(char *buffer, stack_t **stack, int number_line);
 int _opcodes(char *opcode, stack_t **stack, int number_line);
+int check_integer(char *arg);
 
 /*utility functions*/
 int _strlen(char *s);

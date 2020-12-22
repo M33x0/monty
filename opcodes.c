@@ -45,7 +45,7 @@ int _opcodes(char *opcode, stack_t **stack, int number_line)
 {
 	instruction_t instr[] = {{"pall", _pall}, {"pint", _pint}, {"nop", _nop}
 				 , {"pop", _pop}, {"swap", _swap}, {"add", _add}
-				 , {"sub", sub}, {NULL, NULL}};
+				 , {"sub", _sub}, {NULL, NULL}};
 	int i = 0;
 
 	if (opcode == NULL)

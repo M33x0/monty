@@ -47,7 +47,7 @@ int _opcodes(char *opcode, stack_t **stack, int number_line)
 				 {"pint", _pint}, {"nop", _nop}
 				 , {"pop", _pop}, {"swap", _swap}
 				 , {"add", _add}, {"div", _div}
-				 , {"mul", _mul},  {"mod", _mod}
+				 , {"mul", _mul}, {"pchar", _pchar}
 				 , {"sub", _sub}, {NULL, NULL}};
 	int i = 0;
 

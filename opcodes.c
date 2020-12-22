@@ -1,7 +1,7 @@
 #include "monty.h"
 
 /**
- * _strncmp - compares two strings
+ * _strncmp - compares two stringds
  * @s1: pointer to a char
  * @s2: pointer to a char
  * @n: size
@@ -31,7 +31,6 @@ int _strncmp(char *s1, char *s2, int n)
 	else
 		return (-1);
 }
-
 /**
  * _opcodes - executes the right function according to the opcode
  *
@@ -43,12 +42,11 @@ int _strncmp(char *s1, char *s2, int n)
  */
 int _opcodes(char *opcode, stack_t **stack, int number_line)
 {
-	instruction_t instr[] = {{"pall", _pall},
-				 {"pint", _pint}, {"nop", _nop}
-				 , {"pop", _pop}, {"swap", _swap}
-				 , {"add", _add}, {"div", _div}
-				 , {"mul", _mul}, {"pchar", _pchar}
-				 , {"sub", _sub}, {NULL, NULL}};
+	instruction_t instr[] = {{"pall", _pall}, {"pint", _pint}, {"nop", _nop}
+				 , {"pop", _pop}, {"swap", _swap}, {"add", _add}
+				 , {"sub", _sub}, {"div", _div}, {"mul", _mul},
+				 {"mod", _mod}, {"pchar", _pchar}, {"pstr", _pstr},
+				 {NULL, NULL}};
 	int i = 0;
 
 	if (opcode == NULL)
@@ -62,5 +60,5 @@ int _opcodes(char *opcode, stack_t **stack, int number_line)
 			return (code_exit);
 		}
 	}
-	return (-2);
+	return (-1);
 }

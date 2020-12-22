@@ -11,44 +11,61 @@
  */
 int parse(char *buffer, stack_t **head, int line_number)
 {
-	int i = 0, digit = 0;
-	int res = -1;
-	char *opcode = NULL;
-	char *arg = NULL;
+	int digit = 0, res = -1;
+	char *opcode = NULL, *arg = NULL;
 
 	opcode = strtok(buffer, "\n\t ");
-	if (opcode == NULL)
-		return (0);
+	if (opcode == NULL || _strncmp(opcode, "#", 1) == 0)
+		return (code_exit);
 	if (_strncmp(opcode, "push", _strlen("push")) == 0)
 	{
 		arg = strtok(NULL, "\n\t ");
-		for (i = 0; i < _strlen(arg); i++)
+		if (arg != NULL)
 		{
-			if (i == 0)
-			{
-				if (!isdigit(arg[0]) && arg[0] != '-')
-					digit = -1;
-			}
-			else
-			{
-				if (!isdigit(arg[i]))
-					digit = -1;
-			}
+			digit = check_integer(arg);
 		}
 		if (arg == NULL || digit == -1)
 		{
 			fprintf(stderr, "L%d: usage: push integer\n", line_number);
-			return (-1);
+			code_exit = 1;
+			return (code_exit);
 		}
 		_push(head, atoi(arg));
-		return (0);
+		return (code_exit);
 	}
 	res = _opcodes(opcode, head, line_number);
-	if (res == -2)
+	if (res == -1)
 	{
 		fprintf(stderr, "L%d: unknown instruction %s\n", line_number, opcode);
-		return (-1);
+		code_exit = 1;
 	}
-	else
-		return (code_exit);
+	return (code_exit);
+}
+/**
+ * check_integer - checks if the string contains only integer
+ *
+ * @arg: string
+ *
+ * Return: 0 (SUCCESS), -1 (FAILURE)
+ */
+
+int check_integer(char *arg)
+{
+	int digit = 0;
+	int i = 0;
+
+	for (i = 0; i < _strlen(arg); i++)
+	{
+		if (i == 0)
+		{
+			if (!isdigit(arg[0]) && arg[0] != '-')
+				digit = -1;
+		}
+		else
+		{
+			if (!isdigit(arg[i]))
+				digit = -1;
+		}
+	}
+	return (digit);
 }

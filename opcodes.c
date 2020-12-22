@@ -44,7 +44,7 @@ int _strncmp(char *s1, char *s2, int n)
 int _opcodes(char *opcode, stack_t **stack, int number_line)
 {
 	instruction_t instr[] = {{"pall", _pall}, {"pint", _pint}, {"nop", _nop}
-				 , {"pop", _pop}, {"swap", _swap}, {"add", _add}
+				 , {"pop", _pop}, {"swap", _swap}, {"add", _add}, {"div", _div},  {"mul", _mul}
 				 , {"sub", _sub}, {NULL, NULL}};
 	int i = 0;
 

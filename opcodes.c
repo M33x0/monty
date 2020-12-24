@@ -46,6 +46,7 @@ int _opcodes(char *opcode, stack_t **stack, int number_line)
 				 , {"pop", _pop}, {"swap", _swap}, {"add", _add}
 				 , {"sub", _sub}, {"div", _div}, {"mul", _mul},
 				 {"mod", _mod}, {"pchar", _pchar}, {"pstr", _pstr},
+				 {"rotl", _rotl}, {"rotr", _rotr},
 				 {NULL, NULL}};
 	int i = 0;
 
@@ -53,7 +54,7 @@ int _opcodes(char *opcode, stack_t **stack, int number_line)
 		return (-1);
 	for (i = 0; instr[i].opcode != NULL; i++)
 	{
-		if (_strncmp(opcode, instr[i].opcode, _strlen(instr[i].opcode)) == 0)
+		if (strcmp(opcode, instr[i].opcode) == 0)
 		{
 			code_exit = 0;
 			instr[i].f(stack, number_line);

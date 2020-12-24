@@ -11,7 +11,6 @@ int code_exit = 0;
 
 int main(int ac, char **av)
 {
-
 	FILE *fd_read;
 	char *s;
 	unsigned int line_number = 0;
@@ -31,23 +30,20 @@ int main(int ac, char **av)
 	if (fd_read == NULL)
 	{
 		fprintf(stderr, "Error: Can't open file %s\n", av[1]);
-		fclose(fd_read);
 		exit(EXIT_FAILURE);
 	}
 	while (getline(&buffer, &bufsize, fd_read) != -1)
 	{
 		line_number++;
+		code_exit = 0;
 		opcode = parse(buffer, &head, line_number);
-		if (opcode == -1 || opcode == -2)
+		if (opcode == 1)
 		{
-			free(buffer);
-			fclose(fd_read);
-			free_stack(head);
-			exit(EXIT_FAILURE);
+			break;
 		}
 	}
 	free(buffer);
 	free_stack(head);
 	fclose(fd_read);
-	return (0);
+	exit(code_exit);
 }

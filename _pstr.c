@@ -12,36 +12,18 @@
 void _pstr(stack_t **head, unsigned int line_number)
 {
 	stack_t *current;
-	int passed = 0;
 
 	current = *head;
 	if (current == NULL)
 	{
-		fprintf(stderr, "\n");
+		printf("\n");
 		return;
 	}
-	while (current)
+	while (current && isascii(current->n) != 0 && current->n != 0)
 	{
-		if (current->n == 0)
-		{
-			if (passed == 1)
-				printf("\n");
-			return;
-		}
-		if (isascii(current->n) != 0)
-		{
-			printf("%c", current->n);
-			passed = 1;
-		}
-		else
-		{
-			if (passed == 1)
-				printf("\n");
-			return;
-		}
+		printf("%c", current->n);
 		current = current->prev;
 	}
-	if (passed == 1)
-		printf("\n");
+	printf("\n");
 	(void)line_number;
 }
